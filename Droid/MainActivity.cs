@@ -10,7 +10,7 @@ using Android.OS;
 
 namespace bubling.Droid
 {
-    [Activity(Label = "bubling.Droid", Icon = "@drawable/icon", 
+    [Activity(Label = "Bu-Bling", Icon = "@drawable/ic_stat_bu_bling", 
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity

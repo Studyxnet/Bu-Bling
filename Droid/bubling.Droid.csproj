@@ -108,8 +108,6 @@
     <Compile Include="Services\PromoServices.cs" />
     <Compile Include="HtppAccess\CallAPI_Droid.cs" />
     <Compile Include="Helpers\EnumCallAPI.cs" />
-    <Compile Include="Helpers\DTO\ApiResult.cs" />
-    <Compile Include="Helpers\DTO\ApiErroResult.cs" />
     <Compile Include="Renderes\WebViewCustom_Droid.cs" />
     <Compile Include="Renderes\GetDOM_Droid.cs" />
     <Compile Include="Renderes\SQLite_Droid.cs" />
@@ -129,7 +127,6 @@
     <Folder Include="Services\" />
     <Folder Include="HtppAccess\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Helpers\DTO\" />
     <Folder Include="Renderes\" />
     <Folder Include="DTO\" />
     <Folder Include="Data\" />

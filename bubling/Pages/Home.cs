@@ -9,17 +9,6 @@ namespace bubling
         private CustomWebView _webView;
         private StackLayout _mainLayout;
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
-                {
-                    this.TrataWebView();
-                    return false;
-                });
-        }
-
         public Home(string url)
         {
             this.Title = "Home";
@@ -57,16 +46,6 @@ namespace bubling
         {
             var repo = new BuBlingRepository();
             return repo.UsuarioLogado();
-        }
-
-        private void TrataWebView()
-        {
-            var hfEmail = DependencyService.Get<IGetDOM>().ResolveDOM();
-
-            if (!String.IsNullOrEmpty(hfEmail) && hfEmail.Contains("hfEmail"))
-            {
-                var a = hfEmail;
-            }
         }
     }
 }

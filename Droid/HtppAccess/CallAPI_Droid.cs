@@ -57,60 +57,6 @@ namespace bubling.Droid
         }
 
         /// <summary>
-        /// Executa a chamada ao serviço
-        /// </summary>
-        /// <returns>ApiResult</returns>
-        /// <param name="tipoChamada">Tipo chamada.</param>
-        public static async Task<ApiResult> ExecChamadaAPI(EnumCallAPI tipoChamada)
-        {
-            var conn = CreateHttpClient(tipoChamada);
-            ApiResult result = new ApiResult();
-
-            using (conn)
-            {   
-                try
-                {
-                    var response = await conn.GetAsync(conn.BaseAddress);
-                    
-                    result = await response.Content.ReadAsAsync<ApiResult>();
-                }
-                catch (Exception ex)
-                {
-                    result = new ApiResult{ Erro = new ApiErroResult{ Mensagem = ex.Message } };
-                }
-
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// Executa a chamada ao serviço (TESTE)
-        /// </summary>
-        /// <returns>String</returns>
-        /// <param name="tipoChamada">Tipo chamada.</param>
-        public static async Task<string> ExecChamadaTesteAPI(EnumCallAPI tipoChamada = EnumCallAPI.Teste)
-        {
-            var conn = CreateHttpClient(tipoChamada);
-
-            using (conn)
-            {   
-                try
-                {
-                    var response = await conn.GetAsync(conn.BaseAddress);
-
-                    if (String.IsNullOrEmpty(await response.Content.ReadAsStringAsync()))
-                        return "Retorno vazio do servidor !";
-
-                    return await response.Content.ReadAsStringAsync();
-                }
-                catch (Exception ex)
-                {
-                    return ex.Message;
-                }
-            }
-        }
-
-        /// <summary>
         /// Executa a chamada ao serviço e retorna uma STRING
         /// </summary>
         /// <returns>String</returns>
