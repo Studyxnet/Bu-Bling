@@ -6,25 +6,25 @@ namespace bubling
 {
     public class App : Application
     {
+        public static string URL = "http://cpro21201.publiccloud.com.br/bu-bling/mobile/login.aspx";
+        public static string URL_USUARIO_LOGADO = "http://cpro21201.publiccloud.com.br/bu-bling/mobile/carga_campanhas.aspx?email=";
+        public static string EMAIL_USUARIO = "";
+
         public App()
         {
-            // The root page of your application
-            MainPage = new Home("http://www.globo.com");
+            MainPage = new Home(URL);
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
         }
     }
 }

@@ -6,8 +6,19 @@ namespace bubling
 {
     public class Home : ContentPage
     {
-        private WebView _webView;
+        private CustomWebView _webView;
         private StackLayout _mainLayout;
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
+                {
+                    this.TrataWebView();
+                    return false;
+                });
+        }
 
         public Home(string url)
         {
@@ -15,13 +26,16 @@ namespace bubling
 
             if (!String.IsNullOrEmpty(url))
             {
-                this._webView = new WebView
+                if (this.UsuarioLogado())
+                    this.PopulaEmailUsuario();
+
+                this._webView = new CustomWebView
                 { 
-                    Source = url, 
+                    Source = !this.UsuarioLogado() ? url : String.Concat(App.URL_USUARIO_LOGADO, App.EMAIL_USUARIO), 
                     HeightRequest = 1000,
                     WidthRequest = 1000
                 };
-
+                            
                 this._mainLayout = new StackLayout
                 {
                     Children = { _webView }
@@ -31,6 +45,28 @@ namespace bubling
             }
             else
                 DisplayAlert("Aviso", "Erro ao carregar conteúdo", "OK");
+        }
+
+        private void PopulaEmailUsuario()
+        {
+            var repo = new BuBlingRepository();
+            App.EMAIL_USUARIO = repo.RetornarEmailUsuarioLogado();
+        }
+
+        private bool UsuarioLogado()
+        {
+            var repo = new BuBlingRepository();
+            return repo.UsuarioLogado();
+        }
+
+        private void TrataWebView()
+        {
+            var hfEmail = DependencyService.Get<IGetDOM>().ResolveDOM();
+
+            if (!String.IsNullOrEmpty(hfEmail) && hfEmail.Contains("hfEmail"))
+            {
+                var a = hfEmail;
+            }
         }
     }
 }
